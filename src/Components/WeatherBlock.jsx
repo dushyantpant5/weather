@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Forecast from "./Forecast";
 
 const WeatherBlock = ({city}) => {
   const [wData, setwData] = useState();
@@ -7,7 +8,8 @@ const WeatherBlock = ({city}) => {
   
   async function fetchData() {
     
-      const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`;
+      const url = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=${5}`;
+
       
 
     try {
@@ -24,6 +26,7 @@ const WeatherBlock = ({city}) => {
       console.error("Fetch error:", error);
     }
   }
+
 
   useEffect(() => {
     fetchData();
@@ -46,6 +49,8 @@ const WeatherBlock = ({city}) => {
               <img src={wData.current.condition.icon} alt="" />
             </div>
           </div>
+
+          <Forecast forecastData = {wData.forecast} />
 
         </div>
       )}
