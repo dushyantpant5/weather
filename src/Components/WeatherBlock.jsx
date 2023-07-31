@@ -6,6 +6,7 @@ const WeatherBlock = ({city}) => {
   async function fetchData() {
     
       const url = `http://api.weatherapi.com/v1/current.json?key=fc9a0edbdf9c48d7bc8125029233007&q=${city}`;
+      
 
     try {
       const response = await fetch(url);
@@ -46,6 +47,13 @@ const WeatherBlock = ({city}) => {
 
         </div>
       )}
+
+      {
+        !wData && ( <div>
+          <h1 className="text-7xl" style={{fontFamily:"Merriweather Sans"}} >{`There is no place as ${city} `}</h1>
+        </div> )
+      }
+
     </>
   );
 };
